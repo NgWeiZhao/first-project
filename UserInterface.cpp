@@ -2,20 +2,20 @@
 #include <cstdlib>
 #include <regex>
 
-// 构造函数
+// 篶
 UserInterface::UserInterface(FinanceManager& fm) : manager(&fm) {}
 
-// 析构函数
+// 秆篶
 UserInterface::~UserInterface() {}
 
-// 运行主界面循环
+// 祘Α癹伴
 void UserInterface::run() {
     showWelcome();
     int choice;
 
     do {
         displayMainMenu();
-        choice = getIntInput("请选择操作 (1-8): ");
+        choice = getIntInput("叫匡拒巨兜ヘ (1-8): ");
 
         switch (choice) {
         case 1:
@@ -43,7 +43,7 @@ void UserInterface::run() {
             showGoodbye();
             break;
         default:
-            cout << "无效选择，请重新输入！" << endl;
+            cout << "礚匡兜叫穝匡拒" << endl;
             break;
         }
 
@@ -54,146 +54,146 @@ void UserInterface::run() {
     } while (choice != 8);
 }
 
-// 显示欢迎信息
+// 陪ボ舧癟
 void UserInterface::showWelcome() const {
     clearScreen();
     cout << "=====================================" << endl;
-    cout << "    欢迎使用个人财务管理系统！" << endl;
+    cout << "    舧ㄏノ癩叭恨瞶╰参" << endl;
     cout << "=====================================" << endl;
     cout << endl;
 }
 
-// 显示告别信息
+// 陪ボ癟
 void UserInterface::showGoodbye() const {
     cout << "\n=====================================" << endl;
-    cout << "    感谢使用个人财务管理系统！" << endl;
-    cout << "         期待您的再次使用" << endl;
+    cout << "    稰谅ㄏノ癩叭恨瞶╰参" << endl;
+    cout << "         舧Ωㄏノ" << endl;
     cout << "=====================================" << endl;
 }
 
-// 显示主菜单
+// 陪ボ匡虫
 void UserInterface::displayMainMenu() const {
-    cout << "\n========== 主菜单 ==========" << endl;
-    cout << "1. 添加交易记录" << endl;
-    cout << "2. 删除交易记录" << endl;
-    cout << "3. 查看所有交易" << endl;
-    cout << "4. 计算收支总额" << endl;
-    cout << "5. 查看统计信息" << endl;
-    cout << "6. 保存到文件" << endl;
-    cout << "7. 从文件加载" << endl;
-    cout << "8. 退出程序" << endl;
+    cout << "\n========== 匡虫 ==========" << endl;
+    cout << "1. 穝糤ユ魁" << endl;
+    cout << "2. 埃ユ魁" << endl;
+    cout << "3. 琩┮Τユ" << endl;
+    cout << "4. 璸衡羆Μ籔や" << endl;
+    cout << "5. 琩参璸戈癟" << endl;
+    cout << "6. 纗郎" << endl;
+    cout << "7. 眖郎更" << endl;
+    cout << "8. 瞒秨╰参" << endl;
     cout << "============================" << endl;
 }
 
-// 添加交易界面
+// 穝糤ユ魁ざ
 void UserInterface::addTransactionInterface() {
-    cout << "\n========== 添加交易记录 ==========" << endl;
+    cout << "\n========== 穝糤ユ魁 ==========" << endl;
 
-    int id = getIntInput("请输入交易ID: ");
-    double amount = getDoubleInput("请输入金额: ");
+    int id = getIntInput("叫块ユID: ");
+    double amount = getDoubleInput("叫块肂: ");
 
     string date;
     do {
-        date = getStringInput("请输入日期 (YYYY-MM-DD): ");
+        date = getStringInput("叫块ら戳 (YYYY-MM-DD): ");
         if (!isValidDate(date)) {
-            cout << "日期格式错误，请重新输入！" << endl;
+            cout << "ら戳Αぃタ絋叫穝块" << endl;
         }
     } while (!isValidDate(date));
 
-    string description = getStringInput("请输入描述: ");
-    string category = getStringInput("请输入分类: ");
+    string description = getStringInput("叫块磞瓃: ");
+    string category = getStringInput("叫块摸: ");
 
     string type;
     do {
-        type = getStringInput("请输入类型 (income/expense): ");
+        type = getStringInput("叫块摸 (income/expense): ");
         if (!isValidType(type)) {
-            cout << "类型错误，请输入 'income' 或 'expense'！" << endl;
+            cout << "摸ゲ斗 'income' ┪ 'expense'" << endl;
         }
     } while (!isValidType(type));
 
     Transaction newTransaction(id, amount, date, description, category, type);
     manager->addTransaction(newTransaction);
 
-    cout << "交易记录添加成功！" << endl;
+    cout << "ユ魁穝糤Θ" << endl;
 }
 
-// 删除交易界面
+// 埃ユ魁ざ
 void UserInterface::deleteTransactionInterface() {
-    cout << "\n========== 删除交易记录 ==========" << endl;
+    cout << "\n========== 埃ユ魁 ==========" << endl;
 
-    int id = getIntInput("请输入要删除的交易ID: ");
+    int id = getIntInput("叫块璶埃ユID: ");
     manager->deleteTransaction(id);
 }
 
-// 显示交易列表界面
+// 陪ボ┮Τユ魁
 void UserInterface::listTransactionsInterface() const {
-    cout << "\n========== 所有交易记录 ==========" << endl;
+    cout << "\n========== ┮Τユ魁 ==========" << endl;
     manager->listTransactions();
     cout << "=================================" << endl;
 }
 
-// 计算总金额界面
+// 璸衡羆Μ籔や
 void UserInterface::calculateTotalInterface() const {
-    cout << "\n========== 收支统计 ==========" << endl;
+    cout << "\n========== 羆Μ籔や ==========" << endl;
 
     double totalIncome = manager->calculateTotal("income");
     double totalExpense = manager->calculateTotal("expense");
     double balance = totalIncome - totalExpense;
 
-    cout << "总收入: " << totalIncome << " 元" << endl;
-    cout << "总支出: " << totalExpense << " 元" << endl;
-    cout << "净收入: " << balance << " 元" << endl;
+    cout << "羆Μ: " << totalIncome << " じ" << endl;
+    cout << "羆や: " << totalExpense << " じ" << endl;
+    cout << "挡緇: " << balance << " じ" << endl;
     cout << "=============================" << endl;
 }
 
-// 显示统计信息界面
+// 陪ボ参璸戈癟
 void UserInterface::showStatisticsInterface() const {
-    cout << "\n========== 详细统计信息 ==========" << endl;
+    cout << "\n========== 冈灿参璸戈癟 ==========" << endl;
 
     double totalIncome = manager->calculateTotal("income");
     double totalExpense = manager->calculateTotal("expense");
     double balance = totalIncome - totalExpense;
 
-    cout << "收入统计: " << totalIncome << " 元" << endl;
-    cout << "支出统计: " << totalExpense << " 元" << endl;
-    cout << "净收入: " << balance << " 元" << endl;
+    cout << "Μ参璸: " << totalIncome << " じ" << endl;
+    cout << "や参璸: " << totalExpense << " じ" << endl;
+    cout << "挡緇: " << balance << " じ" << endl;
 
     if (balance > 0) {
-        cout << "财务状况: 盈余" << endl;
+        cout << "癩叭猵: 緇" << endl;
     }
     else if (balance < 0) {
-        cout << "财务状况: 亏损" << endl;
+        cout << "癩叭猵: í" << endl;
     }
     else {
-        cout << "财务状况: 收支平衡" << endl;
+        cout << "癩叭猵: Μやキ颗" << endl;
     }
 
     cout << "=================================" << endl;
 }
 
-// 保存文件界面
+// 纗郎ざ
 void UserInterface::saveToFileInterface() const {
-    cout << "\n========== 保存到文件 ==========" << endl;
+    cout << "\n========== 纗郎 ==========" << endl;
 
-    string filename = getStringInput("请输入文件名 (例: data.csv): ");
+    string filename = getStringInput("叫块郎嘿 (箇砞: data.csv): ");
     manager->saveToFile(filename);
 }
 
-// 加载文件界面
+// 眖郎更ざ
 void UserInterface::loadFromFileInterface() {
-    cout << "\n========== 从文件加载 ==========" << endl;
+    cout << "\n========== 眖郎更 ==========" << endl;
 
-    string filename = getStringInput("请输入文件名: ");
+    string filename = getStringInput("叫块郎嘿: ");
     manager->loadFromFile(filename);
 }
 
-// 清理输入缓冲区
+// 睲埃块絯侥跋
 void UserInterface::clearInputBuffer() const {
     cin.clear();
     cin.ignore(numeric_limits<streamsize>::max(), '\n');
 }
 
-// 获取整数输入
+// 眔俱计块
 int UserInterface::getIntInput(const string& prompt) const {
     int value;
     while (true) {
@@ -203,13 +203,13 @@ int UserInterface::getIntInput(const string& prompt) const {
             return value;
         }
         else {
-            cout << "输入错误，请输入有效的整数！" << endl;
+            cout << "块礚叫块Τ俱计" << endl;
             clearInputBuffer();
         }
     }
 }
 
-// 获取浮点数输入
+// 眔疊翴计块
 double UserInterface::getDoubleInput(const string& prompt) const {
     double value;
     while (true) {
@@ -219,13 +219,13 @@ double UserInterface::getDoubleInput(const string& prompt) const {
             return value;
         }
         else {
-            cout << "输入错误，请输入有效的数字！" << endl;
+            cout << "块礚叫块Τ计" << endl;
             clearInputBuffer();
         }
     }
 }
 
-// 获取字符串输入
+// 眔﹃块
 string UserInterface::getStringInput(const string& prompt) const {
     string value;
     cout << prompt;
@@ -233,24 +233,24 @@ string UserInterface::getStringInput(const string& prompt) const {
     return value;
 }
 
-// 验证日期格式
+// 喷靡ら戳Α
 bool UserInterface::isValidDate(const string& date) const {
     regex datePattern(R"(\d{4}-\d{2}-\d{2})");
     return regex_match(date, datePattern);
 }
 
-// 验证交易类型
+// 喷靡ユ摸
 bool UserInterface::isValidType(const string& type) const {
     return (type == "income" || type == "expense");
 }
 
-// 暂停等待用户输入
+// 既氨单ㄏノ
 void UserInterface::pauseForUser() const {
-    cout << "\n按 Enter 键继续...";
+    cout << "\n Enter 龄膥尿...";
     cin.get();
 }
 
-// 清屏功能
+// 睲埃棵辊
 void UserInterface::clearScreen() const {
 #ifdef _WIN32
     system("cls");

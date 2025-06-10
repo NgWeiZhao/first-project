@@ -8,34 +8,39 @@
 
 using namespace std;
 
-// 用户界面类，提供控制台交互功能
+// ㄏノざ摸矗ㄑ籔ㄏノが笆
 class UserInterface {
 private:
-    FinanceManager* manager;  // 财务管理器指针
+    FinanceManager* manager;  // 癩叭恨瞶竟夹
 
-    void displayMainMenu() const;  // 显示主菜单
-    void addTransactionInterface();  // 添加交易界面
-    void deleteTransactionInterface();  // 删除交易界面
-    void listTransactionsInterface() const;  // 显示交易列表界面
-    void calculateTotalInterface() const;  // 计算总金额界面
-    void saveToFileInterface() const;  // 保存文件界面
-    void loadFromFileInterface();  // 加载文件界面
-    void showStatisticsInterface() const;  // 显示统计信息界面
-    void clearInputBuffer() const;  // 清理输入缓冲区
-    int getIntInput(const string& prompt) const;  // 获取整数输入
-    double getDoubleInput(const string& prompt) const;  // 获取浮点数输入
-    string getStringInput(const string& prompt) const;  // 获取字符串输入
-    bool isValidDate(const string& date) const;  // 验证日期格式
-    bool isValidType(const string& type) const;  // 验证交易类型
+    // ず场ざ
+    void displayMainMenu() const;               // 陪ボ匡虫
+    void addTransactionInterface();             // 穝糤ユざ
+    void deleteTransactionInterface();          // 埃ユざ
+    void listTransactionsInterface() const;     // ┮Τユ
+    void calculateTotalInterface() const;       // 璸衡羆Μ籔や
+    void saveToFileInterface() const;           // 纗郎ざ
+    void loadFromFileInterface();               // 眖郎弄戈ざ
+    void showStatisticsInterface() const;       // 陪ボ参璸戈癟
+    void clearInputBuffer() const;              // 睲埃块絯侥跋
+
+    // ㄏノ块矪瞶
+    int getIntInput(const string& prompt) const;         // 眔俱计块
+    double getDoubleInput(const string& prompt) const;   // 眔疊翴计块
+    string getStringInput(const string& prompt) const;   // 眔﹃块
+    bool isValidDate(const string& date) const;          // 喷靡ら戳Α
+    bool isValidType(const string& type) const;          // 喷靡ユ摸
 
 public:
-    UserInterface(FinanceManager& fm);  // 构造函数
-    ~UserInterface();  // 析构函数
-    void run();  // 运行主界面循环
-    void showWelcome() const;  // 显示欢迎信息
-    void showGoodbye() const;  // 显示告别信息
-    void pauseForUser() const;  // 暂停等待用户输入
-    void clearScreen() const;  // 清屏功能
+    UserInterface(FinanceManager& fm);   // 篶
+    ~UserInterface();                    // 秆篶
+
+    // 磅︽瑈祘
+    void run();                          // 磅︽ㄏノざ祘Α
+    void showWelcome() const;           // 陪ボ舧癟
+    void showGoodbye() const;           // 陪ボ瞒秨癟
+    void pauseForUser() const;          // 既氨单ㄏノ龄
+    void clearScreen() const;           // 睲埃棵辊ず甧
 };
 
 #endif
